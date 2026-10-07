@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Blueprint & Telemetry | WhatNext Vision Motors</title>
+  <meta name="description" content="Explore in-depth specifications, technical architecture, and bespoke configurations of WhatNext Vision Motors vehicles.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/vehicle-details.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Floating Cyber Navigation Bar -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-hologram-icon">W</div>
+          <div class="brand-text">
+            <span class="brand-title">WhatNext <span>Vision Motors</span></span>
+            <span class="brand-tagline-mini">Future of Mobility</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="vehicles.html" class="nav-link">Fleet & Inventory</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="innovation.html" class="nav-link">Innovation</a></li>
+          <li><a href="test-drive.html" class="nav-link">Book Test Drive</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div id="navbarAuthContainer"></div>
+          <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle navigation">☰</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Vehicle Details Content -->
+  <main class="container" id="vehicleDetailContainer" style="padding-top: 130px;">
+    
+    <!-- Hero Detail Header -->
+    <header class="detail-hero" style="border-bottom: 1px solid var(--border-glass); padding-bottom: 1.5rem; margin-bottom: 2rem;">
+      <div style="margin-bottom: 1rem;">
+        <a href="vehicles.html" style="font-family: var(--font-mono); color: var(--neon-cyan); font-size: 0.85rem;">&larr; BACK TO FLEET CATALOG</a>
+      </div>
+      
+      <div class="detail-header-row">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+            <span class="section-badge-hud" id="vehicleTypeBadge" style="margin-bottom: 0;">ELECTRIC VEHICLE</span>
+            <span class="table-badge-status status-confirmed" id="vehicleSpecialBadge">Flagship</span>
+          </div>
+          <h1 class="detail-title" id="vehicleName">Loading Vehicle...</h1>
+        </div>
+
+        <div class="detail-price-box">
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">MSRP Starting</div>
+          <div class="detail-price-val" id="vehiclePrice" style="color: var(--neon-cyan); font-weight: 900;">$0</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Gallery Showcase -->
+    <section class="gallery-container">
+      <div class="gallery-main-wrap" style="border: 1px solid var(--border-cyber); box-shadow: var(--shadow-hud), var(--shadow-neon-cyan);">
+        <img src="" alt="Vehicle Main View" class="gallery-main-img" id="galleryMainImage">
+      </div>
+      <div class="gallery-thumbnails-strip" id="galleryThumbsStrip">
+        <!-- Filled by vehicle-detail.js -->
+      </div>
+    </section>
+
+    <!-- Performance Metrics Banner -->
+    <section class="metrics-banner" style="background: var(--bg-surface-1); border: 1px solid var(--border-glass);">
+      <div class="metric-highlight-item">
+        <div class="metric-highlight-val" id="metric0to60" style="color: var(--neon-cyan);">--</div>
+        <div class="metric-highlight-lbl">0-60 MPH Velocity</div>
+      </div>
+      <div class="metric-highlight-item">
+        <div class="metric-highlight-val" id="metricRange" style="color: var(--neon-cyan);">--</div>
+        <div class="metric-highlight-lbl">Target Range</div>
+      </div>
+      <div class="metric-highlight-item">
+        <div class="metric-highlight-val" id="metricPower" style="color: var(--neon-cyan);">--</div>
+        <div class="metric-highlight-lbl">Peak Output Power</div>
+      </div>
+      <div class="metric-highlight-item">
+        <div class="metric-highlight-val" id="metricTopSpeed" style="color: var(--neon-cyan);">--</div>
+        <div class="metric-highlight-lbl">Top Track Speed</div>
+      </div>
+    </section>
+
+    <!-- Detailed Content Split -->
+    <section class="detail-content-split">
+      <div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Architectural Blueprint</h2>
+        <p id="vehicleDescription" style="font-size: 1.05rem; color: var(--text-sub); line-height: 1.75; margin-bottom: 2rem;">
+          Loading detailed vehicle description...
+        </p>
+
+        <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">Key Visionary Features</h3>
+        <div class="features-grid-list" id="vehicleFeaturesList">
+          <!-- Populated by JS -->
+        </div>
+
+        <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">Technical Specifications Matrix</h3>
+        <table class="specs-detail-table" style="background: var(--bg-surface-1); border: 1px solid var(--border-glass);">
+          <tbody id="specsTableBody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Sticky Test Drive & Purchase Action Box -->
+      <aside>
+        <div class="sticky-booking-card" style="background: var(--bg-surface-1); border: 1px solid var(--border-cyber); box-shadow: var(--shadow-hud), var(--shadow-neon-cyan);">
+          <h3 class="booking-card-title" style="font-size: 1.4rem; font-weight: 800;">Reserve VIP Test Drive</h3>
+          <p class="booking-card-desc" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            Experience revolutionary engineering in person at our nearest WhatNext Experience Studio.
+          </p>
+
+          <a href="test-drive.html" id="detailBookTestDriveBtn" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 1rem;">
+            📅 Schedule Drive
+          </a>
+          <a href="contact.html" class="btn btn-outline btn-lg" style="width: 100%;">
+            💬 Inquire for Purchase
+          </a>
+
+          <!-- Monthly EMI Estimator Widget -->
+          <div class="emi-estimator-box" style="background: rgba(4, 7, 15, 0.8); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1.25rem; margin-top: 1.5rem;">
+            <div class="emi-title" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Estimated Monthly Payment</div>
+            <div class="emi-amount" id="calculatedEmi" style="font-family: var(--font-head); font-size: 1.6rem; font-weight: 900; color: var(--neon-gold); margin: 0.35rem 0;">$1,850/mo</div>
+            <div class="emi-note" style="font-size: 0.75rem; color: var(--text-dim);">Based on 60 months @ 4.5% APR financing. Taxes & licensing extra.</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 WhatNext Vision Motors Inc. All Rights Reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="vehicles.html" style="color: var(--text-dim);">All Vehicles</a>
+          <a href="test-drive.html" style="color: var(--text-dim);">Test Drive</a>
+          <a href="contact.html" style="color: var(--text-dim);">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/vehicle-detail.js"></script>
+</body>
+</html>

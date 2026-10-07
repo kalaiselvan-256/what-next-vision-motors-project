@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Access Portal | WhatNext Vision Motors</title>
+  <meta name="description" content="Sign in or register for your WhatNext Vision Motors client account to manage test drives and vehicle orders.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <style>
+    .auth-tab-btn {
+      flex: 1;
+      padding: 0.85rem;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .auth-tab-btn.active {
+      color: var(--neon-cyan);
+      border-bottom-color: var(--neon-cyan);
+    }
+    .demo-creds-box {
+      background: rgba(4, 7, 15, 0.85);
+      border: 1px dashed var(--border-cyber);
+      border-radius: var(--cyber-radius-sm);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Cyber Navigation Bar -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-hologram-icon">W</div>
+          <div class="brand-text">
+            <span class="brand-title">WhatNext <span>Vision Motors</span></span>
+            <span class="brand-tagline-mini">Future of Mobility</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="vehicles.html" class="nav-link">Fleet & Inventory</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="innovation.html" class="nav-link">Innovation</a></li>
+          <li><a href="test-drive.html" class="nav-link">Book Test Drive</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div id="navbarAuthContainer"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Auth Section -->
+  <main class="section-padding" style="padding-top: 150px;">
+    <div class="container" style="max-width: 500px;">
+      
+      <div style="background: var(--bg-surface-1); border: 1px solid var(--border-cyber); border-radius: var(--cyber-radius-lg); padding: 2.8rem; box-shadow: var(--shadow-hud), var(--shadow-neon-cyan);">
+        
+        <!-- Auth Tabs Toggle -->
+        <div style="display: flex; border-bottom: 1px solid var(--border-glass); margin-bottom: 1.75rem;">
+          <button class="auth-tab-btn active" id="tabSignInBtn" onclick="toggleAuthTab('signin')">Sign In</button>
+          <button class="auth-tab-btn" id="tabRegisterBtn" onclick="toggleAuthTab('register')">Create Account</button>
+        </div>
+
+        <!-- Demo Accounts Quick Filler -->
+        <div class="demo-creds-box">
+          <div style="font-weight: 700; color: #FFF; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-family: var(--font-mono); color: var(--neon-cyan);">⚡ DEMO CREDENTIALS</span>
+            <span style="font-size: 0.68rem; color: var(--text-dim);">CLICK TO FILL</span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="fillDemo('admin@whatnext.com', 'Admin@1234')">
+              👑 Admin (admin@whatnext.com)
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="fillDemo('sarah.chen@example.com', 'User@1234')">
+              👤 User (sarah.chen@example.com)
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. Sign In Form -->
+        <form id="loginForm">
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem;">
+            <label for="loginEmail" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Email Address</label>
+            <input type="email" id="loginEmail" class="input-field" placeholder="name@domain.com" required>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.75rem;">
+            <label for="loginPassword" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Password</label>
+            <input type="password" id="loginPassword" class="input-field" placeholder="••••••••" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            Sign In to Account &rarr;
+          </button>
+        </form>
+
+        <!-- 2. Register Form (Hidden initially) -->
+        <form id="registerForm" style="display: none;">
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem;">
+            <label for="regName" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Full Name *</label>
+            <input type="text" id="regName" class="input-field" placeholder="Jonathan Vance" required>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem;">
+            <label for="regEmail" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Email Address *</label>
+            <input type="email" id="regEmail" class="input-field" placeholder="name@domain.com" required>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem;">
+            <label for="regPhone" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Phone Number *</label>
+            <input type="tel" id="regPhone" class="input-field" placeholder="+1 (555) 000-0000" required>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem;">
+            <label for="regPassword" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Password *</label>
+            <input type="password" id="regPassword" class="input-field" placeholder="Min 6 characters" minlength="6" required>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.5rem;">
+            <label for="regConfirmPassword" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Confirm Password *</label>
+            <input type="password" id="regConfirmPassword" class="input-field" placeholder="Re-enter password" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            Create Free Account &rarr;
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 WhatNext Vision Motors Inc. All Rights Reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="index.html" style="color: var(--text-dim);">Home</a>
+          <a href="about.html" style="color: var(--text-dim);">About Us</a>
+          <a href="test-drive.html" style="color: var(--text-dim);">Test Drive</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function toggleAuthTab(tab) {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const tabSignInBtn = document.getElementById('tabSignInBtn');
+      const tabRegisterBtn = document.getElementById('tabRegisterBtn');
+
+      if (tab === 'signin') {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+        tabSignInBtn.classList.add('active');
+        tabRegisterBtn.classList.remove('active');
+      } else {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+        tabRegisterBtn.classList.add('active');
+        tabSignInBtn.classList.remove('active');
+      }
+    }
+
+    function fillDemo(email, pass) {
+      toggleAuthTab('signin');
+      document.getElementById('loginEmail').value = email;
+      document.getElementById('loginPassword').value = pass;
+      window.WN_API.showToast('Credentials Filled', `Ready to sign in as ${email}`, 'info');
+    }
+  </script>
+</body>
+</html>

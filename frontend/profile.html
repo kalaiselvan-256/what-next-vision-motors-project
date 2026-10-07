@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile & Bookings | WhatNext Vision Motors</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">W</div>
+        <div class="brand-text">
+          <span class="brand-name">WhatNext <span>Vision Motors</span></span>
+          <span class="brand-tag">Future of Mobility</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="vehicles.html" class="nav-link">Fleet & Inventory</a></li>
+        <li><a href="test-drive.html" class="nav-link">Book Test Drive</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div id="navbarAuthContainer"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Main Header -->
+  <header style="padding-top: 130px; padding-bottom: 30px; border-bottom: 1px solid var(--border-glass);">
+    <div class="container">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+          <img src="" id="profileAvatarImg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--primary); object-fit: cover;" alt="Avatar">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <h1 style="font-size: 2rem;" id="profileUserName">Loading Profile...</h1>
+              <span class="admin-badge-role" id="profileUserRole">USER</span>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-muted);" id="profileUserEmail">email@domain.com</div>
+          </div>
+        </div>
+
+        <div>
+          <a href="test-drive.html" class="btn btn-primary btn-sm">📅 Schedule New Drive</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Profile & Bookings Body -->
+  <main class="section-padding">
+    <div class="container">
+      
+      <div style="display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 3rem; align-items: flex-start;">
+        
+        <!-- Left: My Test Drive Bookings -->
+        <div>
+          <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 1.5rem; color: #FFF;">My Test Drive Reservations</h2>
+          
+          <div id="myBookingsContainer">
+            <div class="spinner"></div>
+          </div>
+        </div>
+
+        <!-- Right: Edit Profile Card -->
+        <div>
+          <div style="background: var(--bg-card); backdrop-filter: var(--glass-blur); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--card-shadow);">
+            <h3 style="font-size: 1.3rem; margin-bottom: 1.25rem; color: #FFF;">Edit Profile Information</h3>
+
+            <form id="updateProfileForm">
+              <div class="filter-group" style="margin-bottom: 1rem;">
+                <label for="editName" class="filter-label">Full Name</label>
+                <input type="text" id="editName" class="input-field" required>
+              </div>
+
+              <div class="filter-group" style="margin-bottom: 1rem;">
+                <label for="editPhone" class="filter-label">Contact Phone</label>
+                <input type="tel" id="editPhone" class="input-field" placeholder="+1 (555) 000-0000">
+              </div>
+
+              <div class="filter-group" style="margin-bottom: 1.5rem;">
+                <label for="editPassword" class="filter-label">New Password (Leave blank to keep unchanged)</label>
+                <input type="password" id="editPassword" class="input-field" placeholder="••••••••">
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Save Profile Changes
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 WhatNext Vision Motors Inc. All Rights Reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="index.html" style="color: var(--text-dim);">Home</a>
+          <a href="vehicles.html" style="color: var(--text-dim);">Fleet</a>
+          <a href="test-drive.html" style="color: var(--text-dim);">Book Test Drive</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

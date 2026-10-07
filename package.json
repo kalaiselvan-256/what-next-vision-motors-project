@@ -1,0 +1,33 @@
+{
+  "name": "whatnext-vision-motors",
+  "version": "1.0.0",
+  "description": "WhatNext Vision Motors - Shaping the Future of Mobility with Innovation and Excellence. Full-Stack Web Application (Node.js, Express, MongoDB, Vanilla HTML/CSS/JS).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node backend/seeders/runSeed.js"
+  },
+  "keywords": [
+    "automotive",
+    "electric-vehicles",
+    "mobility",
+    "full-stack",
+    "express",
+    "mongodb",
+    "mongoose",
+    "luxury-cars"
+  ],
+  "author": "WhatNext Vision Motors Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb-memory-server": "^11.3.0",
+    "mongoose": "^9.10.3",
+    "morgan": "^1.12.1"
+  }
+}

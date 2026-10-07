@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Control Center | WhatNext Vision Motors</title>
+  <meta name="description" content="WhatNext Vision Motors Operational & Fleet Administration Dashboard.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <div class="admin-layout">
+    
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-header">
+        <div class="brand-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">W</div>
+        <div class="brand-text">
+          <span class="brand-name" style="font-size: 1.1rem;">WhatNext <span>ADMIN</span></span>
+          <span class="admin-badge-role" style="font-size: 0.6rem;">EXECUTIVE OPS</span>
+        </div>
+      </div>
+
+      <ul class="admin-nav-menu">
+        <li class="admin-nav-item active" data-tab="overview">
+          <span>📊</span>
+          <span>Dashboard Overview</span>
+        </li>
+        <li class="admin-nav-item" data-tab="vehicles">
+          <span>🏎️</span>
+          <span>Fleet Inventory (CRUD)</span>
+        </li>
+        <li class="admin-nav-item" data-tab="bookings">
+          <span>📅</span>
+          <span>Test Drive Bookings</span>
+        </li>
+        <li class="admin-nav-item" data-tab="inquiries">
+          <span>✉️</span>
+          <span>Client Inquiries</span>
+        </li>
+        <li class="admin-nav-item" data-tab="users">
+          <span>👥</span>
+          <span>User Management</span>
+        </li>
+      </ul>
+
+      <div class="admin-sidebar-footer">
+        <a href="index.html" class="btn btn-outline btn-sm" style="width: 100%;">
+          🌐 Back to Public Site
+        </a>
+      </div>
+    </aside>
+
+    <!-- Admin Main Body -->
+    <main class="admin-main">
+      
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <button id="adminSidebarToggle" class="mobile-menu-btn" style="display: inline-block;">☰</button>
+          <h2 class="admin-topbar-title" id="adminPageHeader">Fleet Operations & Control Center</h2>
+        </div>
+
+        <div class="admin-topbar-actions">
+          <span style="font-size: 0.9rem; color: var(--text-secondary);">
+            Logged in as: <strong id="adminUserName" style="color: var(--primary);">Administrator</strong>
+          </span>
+          <a href="#" onclick="window.WN_API.clearAuthData(); window.location.href='login.html';" class="btn btn-outline btn-sm" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.4);">
+            Sign Out
+          </a>
+        </div>
+      </header>
+
+      <!-- Dynamic Content Area -->
+      <div class="admin-content-body">
+        
+        <!-- ==========================================
+             TAB 1: Dashboard Overview
+             ========================================== -->
+        <section class="admin-tab-content" id="tabContent-overview" style="display: block;">
+          
+          <!-- KPI Metrics Row -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <span class="kpi-label">Active Vehicles</span>
+                <span class="kpi-value" id="statTotalVehicles">0</span>
+                <span class="kpi-subtext">In Live Inventory</span>
+              </div>
+              <div class="kpi-icon-box">🏎️</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <span class="kpi-label">Test Drives</span>
+                <span class="kpi-value" id="statTotalBookings">0</span>
+                <span class="kpi-subtext">Scheduled Total</span>
+              </div>
+              <div class="kpi-icon-box">📅</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <span class="kpi-label">Pending Drives</span>
+                <span class="kpi-value" id="statPendingBookings" style="color: var(--warning);">0</span>
+                <span class="kpi-subtext">Requires Confirmation</span>
+              </div>
+              <div class="kpi-icon-box" style="border-color: rgba(245, 158, 11, 0.4); color: var(--warning);">⏳</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <span class="kpi-label">New Inquiries</span>
+                <span class="kpi-value" id="statNewInquiries" style="color: var(--accent-purple);">0</span>
+                <span class="kpi-subtext">Awaiting Response</span>
+              </div>
+              <div class="kpi-icon-box" style="border-color: rgba(139, 92, 246, 0.4); color: var(--accent-purple);">✉️</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-info">
+                <span class="kpi-label">Registered Users</span>
+                <span class="kpi-value" id="statTotalUsers">0</span>
+                <span class="kpi-subtext">Accounts in MongoDB</span>
+              </div>
+              <div class="kpi-icon-box">👥</div>
+            </div>
+          </div>
+
+          <!-- Recent Activity Split Tables -->
+          <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem;">
+            
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="admin-card-title">Recent Test Drive Requests</h3>
+                <button class="btn btn-outline btn-sm" onclick="switchTab('bookings')">View All</button>
+              </div>
+              <div class="admin-table-container">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Ref Code</th>
+                      <th>Customer</th>
+                      <th>Vehicle</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="overviewRecentBookings">
+                    <tr><td colspan="5" class="text-center">Loading recent bookings...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="admin-card-title">Recent Inquiries</h3>
+                <button class="btn btn-outline btn-sm" onclick="switchTab('inquiries')">View All</button>
+              </div>
+              <div class="admin-table-container">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Contact</th>
+                      <th>Subject</th>
+                      <th>Type</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="overviewRecentInquiries">
+                    <tr><td colspan="4" class="text-center">Loading recent messages...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ==========================================
+             TAB 2: Vehicles Fleet Inventory (CRUD)
+             ========================================== -->
+        <section class="admin-tab-content" id="tabContent-vehicles" style="display: none;">
+          
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3 class="admin-card-title">Vehicle Inventory Management</h3>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 0.2rem;">
+                  Create, update specifications, pricing, and remove vehicles directly from MongoDB.
+                </p>
+              </div>
+              <button class="btn btn-primary" id="addNewVehicleBtn">
+                + Add New Vehicle
+              </button>
+            </div>
+
+            <div class="admin-table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Vehicle Details</th>
+                    <th>Type</th>
+                    <th>Powertrain</th>
+                    <th>Price MSRP</th>
+                    <th>Range</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminVehiclesTableBody">
+                  <tr><td colspan="7" class="text-center">Loading vehicle fleet...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==========================================
+             TAB 3: Test Drive Bookings
+             ========================================== -->
+        <section class="admin-tab-content" id="tabContent-bookings" style="display: none;">
+          
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3 class="admin-card-title">Test Drive Reservations</h3>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 0.2rem;">
+                  Review customer schedule requests, update confirmation status, and manage appointments.
+                </p>
+              </div>
+            </div>
+
+            <div class="admin-table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Reference</th>
+                    <th>Customer Info</th>
+                    <th>Requested Vehicle</th>
+                    <th>Date & Time Slot</th>
+                    <th>Location Hub</th>
+                    <th>Status Action</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody id="adminBookingsTableBody">
+                  <tr><td colspan="7" class="text-center">Loading bookings...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==========================================
+             TAB 4: Contact Inquiries
+             ========================================== -->
+        <section class="admin-tab-content" id="tabContent-inquiries" style="display: none;">
+          
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3 class="admin-card-title">Client Messages & Inquiries</h3>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 0.2rem;">
+                  Inquiries received via contact portal from clients, fleet buyers, and media.
+                </p>
+              </div>
+            </div>
+
+            <div class="admin-table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Sender</th>
+                    <th>Subject</th>
+                    <th>Inquiry Department</th>
+                    <th>Status</th>
+                    <th>Message Details</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody id="adminInquiriesTableBody">
+                  <tr><td colspan="6" class="text-center">Loading messages...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==========================================
+             TAB 5: Users Management
+             ========================================== -->
+        <section class="admin-tab-content" id="tabContent-users" style="display: none;">
+          
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <div>
+                <h3 class="admin-card-title">Registered Users</h3>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 0.2rem;">
+                  View accounts registered in MongoDB and manage role permissions (User / Admin).
+                </p>
+              </div>
+            </div>
+
+            <div class="admin-table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Role</th>
+                    <th>Member Since</th>
+                    <th>Role Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTableBody">
+                  <tr><td colspan="6" class="text-center">Loading users...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Vehicle Add / Edit Modal -->
+  <div class="modal-backdrop" id="vehicleModal">
+    <div class="modal-card" style="max-width: 780px;">
+      <button class="modal-close-btn" id="closeVehicleModal">&times;</button>
+      
+      <div class="modal-header">
+        <h2 class="modal-title" id="vehicleModalTitle">Add Visionary Vehicle</h2>
+        <p class="modal-subtitle">Fill in complete specifications for the new inventory item.</p>
+      </div>
+
+      <form id="vehicleForm">
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="filter-group">
+            <label for="vName" class="filter-label">Vehicle Name *</label>
+            <input type="text" id="vName" class="input-field" placeholder="e.g. WhatNext Vision Hyperion GT" required>
+          </div>
+          <div class="filter-group">
+            <label for="vModel" class="filter-label">Model Series *</label>
+            <input type="text" id="vModel" class="input-field" placeholder="e.g. Hyperion-GT" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="filter-group">
+            <label for="vType" class="filter-label">Vehicle Type *</label>
+            <select id="vType" class="select-field" required>
+              <option value="Hypercar">Hypercar</option>
+              <option value="SUV">SUV</option>
+              <option value="Sedan">Sedan</option>
+              <option value="Coupe">Coupe</option>
+              <option value="Crossover">Crossover</option>
+              <option value="Concept">Concept</option>
+              <option value="Luxury GT">Luxury GT</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="vFuel" class="filter-label">Fuel / Powertrain *</label>
+            <select id="vFuel" class="select-field" required>
+              <option value="EV">EV (100% Electric)</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="Hydrogen">Hydrogen</option>
+              <option value="Petrol">Petrol</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="vPrice" class="filter-label">Price (USD) *</label>
+            <input type="number" id="vPrice" class="input-field" placeholder="125000" min="0" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="filter-group">
+            <label for="vRange" class="filter-label">Range / Mileage *</label>
+            <input type="text" id="vRange" class="input-field" placeholder="520 Miles / 836 Km" required>
+          </div>
+          <div class="filter-group">
+            <label for="vAcceleration" class="filter-label">0-60 MPH Acceleration</label>
+            <input type="text" id="vAcceleration" class="input-field" placeholder="0-60 mph in 2.2s">
+          </div>
+          <div class="filter-group">
+            <label for="vPower" class="filter-label">Horsepower</label>
+            <input type="text" id="vPower" class="input-field" placeholder="1,020 hp">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="filter-group">
+            <label for="vTopSpeed" class="filter-label">Top Speed</label>
+            <input type="text" id="vTopSpeed" class="input-field" placeholder="220 mph">
+          </div>
+          <div class="filter-group">
+            <label for="vTransmission" class="filter-label">Transmission</label>
+            <select id="vTransmission" class="select-field">
+              <option value="Single-Speed EV">Single-Speed EV</option>
+              <option value="Automatic">Automatic</option>
+              <option value="Dual-Clutch 8-Speed">Dual-Clutch 8-Speed</option>
+              <option value="Manual">Manual</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="vSeats" class="filter-label">Seating Capacity</label>
+            <input type="number" id="vSeats" class="input-field" value="5" min="1" max="9">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div class="filter-group">
+            <label for="vBattery" class="filter-label">Battery Pack</label>
+            <input type="text" id="vBattery" class="input-field" placeholder="115 kWh Solid-State">
+          </div>
+          <div class="filter-group">
+            <label for="vYear" class="filter-label">Release Year</label>
+            <input type="number" id="vYear" class="input-field" value="2026">
+          </div>
+          <div class="filter-group">
+            <label for="vBadge" class="filter-label">Badge Label</label>
+            <input type="text" id="vBadge" class="input-field" placeholder="e.g. Flagship Edition">
+          </div>
+        </div>
+
+        <div class="filter-group" style="margin-bottom: 1rem;">
+          <label for="vDescription" class="filter-label">Vehicle Description *</label>
+          <textarea id="vDescription" class="input-field" rows="3" placeholder="Provide architectural details, performance highlights, and luxury craftsmanship..." required></textarea>
+        </div>
+
+        <div class="filter-group" style="margin-bottom: 1rem;">
+          <label for="vImages" class="filter-label">Image URLs (One URL per line) *</label>
+          <textarea id="vImages" class="input-field" rows="3" placeholder="https://images.unsplash.com/..."></textarea>
+        </div>
+
+        <div class="filter-group" style="margin-bottom: 1.5rem;">
+          <label for="vFeatures" class="filter-label">Key Features (Comma-separated)</label>
+          <input type="text" id="vFeatures" class="input-field" placeholder="Autonomous Level 4 AI, Quantum HUD, Active Aero Wing, 900V DC Fast Charging">
+        </div>
+
+        <div style="display: flex; gap: 2rem; margin-bottom: 1.75rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="vAvailable" checked style="accent-color: var(--primary);">
+            <span>Available in Showroom</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" id="vFeatured" style="accent-color: var(--primary);">
+            <span>Feature on Home Page</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+          Save Vehicle to Inventory &rarr;
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

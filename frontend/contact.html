@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Concierge Command Terminal | WhatNext Vision Motors</title>
+  <meta name="description" content="Connect with WhatNext Vision Motors client relations, fleet sales, and executive concierge worldwide.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <style>
+    .faq-container {
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      background: var(--bg-surface-1);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--cyber-radius-md);
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      font-weight: 700;
+      color: #FFF;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      display: none;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-item.active {
+      border-color: var(--border-cyber);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Cyber Navigation Bar -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-hologram-icon">W</div>
+          <div class="brand-text">
+            <span class="brand-title">WhatNext <span>Vision Motors</span></span>
+            <span class="brand-tagline-mini">Future of Mobility</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="vehicles.html" class="nav-link">Fleet & Inventory</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="innovation.html" class="nav-link">Innovation</a></li>
+          <li><a href="test-drive.html" class="nav-link">Book Test Drive</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div id="navbarAuthContainer"></div>
+          <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle navigation">☰</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header style="padding-top: 150px; padding-bottom: 40px; text-align: center; border-bottom: 1px solid var(--border-glass);">
+    <div class="container">
+      <div class="section-badge-hud"><span class="badge-pulse-node"></span> Direct Command Transmission</div>
+      <h1 class="section-title">Client Relations & Concierge</h1>
+      <p class="section-subtitle" style="margin: 0 auto; max-width: 640px;">
+        Reach our worldwide headquarters for personalized vehicle ordering, bespoke atelier configurations, fleet acquisitions, or technical media inquiries.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content Grid -->
+  <main class="section-padding">
+    <div class="container">
+      
+      <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: flex-start;">
+        
+        <!-- Contact Form Box -->
+        <div style="background: var(--bg-surface-1); border: 1px solid var(--border-cyber); border-radius: var(--cyber-radius-lg); padding: 2.8rem; box-shadow: var(--shadow-hud), var(--shadow-neon-cyan);">
+          <h2 style="font-size: 1.7rem; font-weight: 800; margin-bottom: 0.5rem; color: #FFF;">Direct Transmission Terminal</h2>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.75rem;">
+            Fill out the form below. Messages are processed directly into our MongoDB customer relation queue.
+          </p>
+
+          <form id="contactForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <label for="contactName" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Your Full Name *</label>
+                <input type="text" id="contactName" class="input-field" placeholder="Full name" required>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <label for="contactEmail" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Email Address *</label>
+                <input type="email" id="contactEmail" class="input-field" placeholder="name@domain.com" required>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <label for="contactPhone" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Phone Number (Optional)</label>
+                <input type="tel" id="contactPhone" class="input-field" placeholder="+1 (555) 000-0000">
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <label for="contactInquiryType" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Inquiry Department *</label>
+                <select id="contactInquiryType" class="select-field" required>
+                  <option value="General Inquiry">General Inquiry</option>
+                  <option value="Vehicle Purchase">Vehicle Purchase & Atelier</option>
+                  <option value="Fleet Solutions">Commercial & Fleet Solutions</option>
+                  <option value="Investor Relations">Investor Relations</option>
+                  <option value="Press & Media">Press & Media</option>
+                  <option value="Technical Support">Technical Support</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem;">
+              <label for="contactSubject" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Inquiry Subject *</label>
+              <input type="text" id="contactSubject" class="input-field" placeholder="Brief subject summary" required>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.5rem;">
+              <label for="contactMessage" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Your Message *</label>
+              <textarea id="contactMessage" class="input-field" rows="5" placeholder="State your requirements, requested vehicle configurations, or technical questions..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+              Transmit Inquiry &rarr;
+            </button>
+          </form>
+
+          <div id="contactStatusBox" style="display: none;"></div>
+        </div>
+
+        <!-- Headquarters Details -->
+        <div>
+          <div style="background: var(--bg-surface-1); border: 1px solid var(--border-glass); border-radius: var(--cyber-radius-lg); padding: 2.2rem; margin-bottom: 2rem;">
+            <h3 style="font-size: 1.4rem; color: #FFF; margin-bottom: 1.5rem;">Global Headquarters</h3>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div style="display: flex; gap: 1rem;">
+                <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--neon-cyan-subtle); border: 1px solid var(--border-cyber); display: flex; align-items: center; justify-content: center; color: var(--neon-cyan); font-size: 1.2rem; flex-shrink: 0;">📍</div>
+                <div>
+                  <div style="font-weight: 700; color: #FFF;">WhatNext Innovation Center</div>
+                  <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.2rem;">3000 Sand Hill Road, Building 4<br>Silicon Valley, Palo Alto, CA 94304, USA</div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 1rem;">
+                <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--neon-cyan-subtle); border: 1px solid var(--border-cyber); display: flex; align-items: center; justify-content: center; color: var(--neon-cyan); font-size: 1.2rem; flex-shrink: 0;">📞</div>
+                <div>
+                  <div style="font-weight: 700; color: #FFF;">Direct Concierge Line</div>
+                  <div style="font-size: 0.95rem; color: var(--neon-cyan); margin-top: 0.2rem; font-weight: 700;">+1 (800) 555-WNV-MTR</div>
+                  <div style="font-size: 0.75rem; color: var(--text-dim);">Available 24/7 for VIP Owners</div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 1rem;">
+                <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--neon-cyan-subtle); border: 1px solid var(--border-cyber); display: flex; align-items: center; justify-content: center; color: var(--neon-cyan); font-size: 1.2rem; flex-shrink: 0;">✉️</div>
+                <div>
+                  <div style="font-weight: 700; color: #FFF;">Secure Electronic Mail</div>
+                  <div style="font-size: 0.9rem; color: var(--text-sub); margin-top: 0.2rem;">concierge@whatnext-motors.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Studio Hours -->
+          <div style="background: var(--bg-surface-1); border: 1px solid var(--border-glass); border-radius: var(--cyber-radius-lg); padding: 1.8rem;">
+            <h4 style="font-size: 1.15rem; color: #FFF; margin-bottom: 1rem;">Global Studio Hours</h4>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.6rem;">
+              <span>Monday – Friday:</span>
+              <span style="color: #FFF; font-weight: 600;">09:00 AM – 08:00 PM PST</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.6rem;">
+              <span>Saturday – Sunday:</span>
+              <span style="color: #FFF; font-weight: 600;">10:00 AM – 06:00 PM PST</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--text-muted);">
+              <span>VIP Private Track Sessions:</span>
+              <span style="color: var(--neon-cyan); font-weight: 600;">By Appointment</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Frequently Asked Questions -->
+      <section class="faq-container">
+        <div class="section-header" style="margin-bottom: 2rem;">
+          <h2 class="section-title" style="font-size: 2.2rem;">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-item active">
+          <div class="faq-question">How does WhatNext VIP test-drive scheduling work? <span>▼</span></div>
+          <div class="faq-answer">
+            After submitting your reservation online, your dedicated mobility specialist contacts you to confirm your customized drive route, vehicle configuration preferences, and provides a priority VIP access pass.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">What is the battery warranty coverage? <span>▼</span></div>
+          <div class="faq-answer">
+            Every WhatNext Vision Motors vehicle includes an industry-leading 8-Year or 100,000-Mile complete powertrain and high-voltage battery guarantee maintaining at least 85% capacity retention.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Can I configure custom bespoke finishes? <span>▼</span></div>
+          <div class="faq-answer">
+            Yes. Through our WhatNext Bespoke Atelier program, clients can collaborate with master craftspeople for personalized exterior carbon weaves, interior vegan leathers, and tailored telemetry interfaces.
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 WhatNext Vision Motors Inc. All Rights Reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="index.html" style="color: var(--text-dim);">Home</a>
+          <a href="about.html" style="color: var(--text-dim);">About Us</a>
+          <a href="test-drive.html" style="color: var(--text-dim);">Book Test Drive</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

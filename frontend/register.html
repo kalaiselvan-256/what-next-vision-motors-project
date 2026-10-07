@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Access Registration | WhatNext Vision Motors</title>
+  <meta name="description" content="Create your WhatNext Vision Motors executive client portal account to manage test drives, bespoke vehicle configurations, and orders.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-hologram-icon">W</div>
+          <div class="brand-text">
+            <span class="brand-title">WhatNext <span>Vision Motors</span></span>
+            <span class="brand-tagline-mini">Future of Mobility</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="vehicles.html" class="nav-link">Fleet & Inventory</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="test-drive.html" class="nav-link">Book Test Drive</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div id="navbarAuthContainer"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Register Section -->
+  <main class="section-padding" style="padding-top: 150px;">
+    <div class="container" style="max-width: 520px;">
+      
+      <div style="background: var(--bg-surface-1); border: 1px solid var(--border-cyber); border-radius: var(--cyber-radius-lg); padding: 2.8rem; box-shadow: var(--shadow-hud), var(--shadow-neon-cyan);">
+        
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <div class="section-badge-hud"><span class="badge-pulse-node"></span> New Client Portal</div>
+          <h1 style="font-size: 2rem; font-weight: 900; margin-top: 0.5rem;">Join WhatNext Motors</h1>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.35rem;">
+            Unlock VIP vehicle reservations and private track access.
+          </p>
+        </div>
+
+        <form id="registerForm">
+          <div class="filter-group" style="margin-bottom: 1.1rem;">
+            <label for="regName" class="filter-label">Full Legal Name *</label>
+            <input type="text" id="regName" class="input-field" placeholder="e.g. Jonathan Mercer" required>
+          </div>
+
+          <div class="filter-group" style="margin-bottom: 1.1rem;">
+            <label for="regEmail" class="filter-label">Email Address *</label>
+            <input type="email" id="regEmail" class="input-field" placeholder="name@domain.com" required>
+          </div>
+
+          <div class="filter-group" style="margin-bottom: 1.1rem;">
+            <label for="regPhone" class="filter-label">Mobile Contact *</label>
+            <input type="tel" id="regPhone" class="input-field" placeholder="+1 (555) 000-0000" required>
+          </div>
+
+          <div class="filter-group" style="margin-bottom: 1.1rem;">
+            <label for="regPassword" class="filter-label">Security Password *</label>
+            <input type="password" id="regPassword" class="input-field" placeholder="Minimum 6 characters" minlength="6" required>
+          </div>
+
+          <div class="filter-group" style="margin-bottom: 1.75rem;">
+            <label for="regConfirmPassword" class="filter-label">Confirm Password *</label>
+            <input type="password" id="regConfirmPassword" class="input-field" placeholder="Re-enter password" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            Create Client Account &rarr;
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.75rem; font-size: 0.9rem; color: var(--text-muted);">
+          Already possess an active client profile? <a href="login.html" style="font-weight: 700;">Sign In</a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 WhatNext Vision Motors Inc. All Rights Reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="index.html" style="color: var(--text-dim);">Home</a>
+          <a href="login.html" style="color: var(--text-dim);">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

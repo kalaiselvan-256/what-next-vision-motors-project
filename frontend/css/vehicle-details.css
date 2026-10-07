@@ -1,0 +1,307 @@
+/* ==========================================================================
+   WhatNext Vision Motors - Vehicle Detail Showcase Stylesheet
+   ========================================================================== */
+
+.detail-hero {
+  padding-top: 110px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.detail-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.detail-price-box {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .detail-title {
+    font-size: 2.1rem;
+  }
+  .detail-price-box {
+    text-align: left;
+  }
+}
+
+.detail-price-val {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* Gallery Section */
+.gallery-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (max-width: 992px) {
+  .gallery-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-main-wrap {
+  width: 100%;
+  height: 480px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #0B1120;
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--card-shadow);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .gallery-main-wrap {
+    height: 320px;
+  }
+}
+
+.gallery-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-thumbnails-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+@media (max-width: 992px) {
+  .gallery-thumbnails-strip {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
+
+.gallery-thumb {
+  height: 145px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--border-glass);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: #0B1120;
+}
+
+@media (max-width: 992px) {
+  .gallery-thumb {
+    min-width: 150px;
+    height: 100px;
+  }
+}
+
+.gallery-thumb.active,
+.gallery-thumb:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Big Metrics Highlights Strip */
+.metrics-banner {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+@media (max-width: 768px) {
+  .metrics-banner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.metric-highlight-item {
+  text-align: center;
+  border-right: 1px solid var(--border-glass);
+  padding: 0 1rem;
+}
+
+.metric-highlight-item:last-child {
+  border-right: none;
+}
+
+.metric-highlight-val {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.metric-highlight-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+  letter-spacing: 0.08em;
+}
+
+/* Specs & Booking Split Layout */
+.detail-content-split {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 992px) {
+  .detail-content-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Feature Checkmarks */
+.features-grid-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 600px) {
+  .features-grid-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.feature-check-item .icon {
+  color: var(--primary);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Technical Specification Table */
+.specs-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.specs-detail-table tr {
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.specs-detail-table tr:last-child {
+  border-bottom: none;
+}
+
+.specs-detail-table td {
+  padding: 1rem 1.25rem;
+  font-size: 0.92rem;
+}
+
+.specs-detail-table td:first-child {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  width: 40%;
+}
+
+.specs-detail-table td:last-child {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Sticky Booking Card */
+.sticky-booking-card {
+  position: sticky;
+  top: 100px;
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15);
+}
+
+.booking-card-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.booking-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Monthly EMI Estimator */
+.emi-estimator-box {
+  background: rgba(8, 12, 21, 0.7);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.emi-title {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.emi-amount {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  margin: 0.35rem 0;
+}
+
+.emi-note {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}

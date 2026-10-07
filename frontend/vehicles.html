@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Showcase & Cyber Fleet | WhatNext Vision Motors</title>
+  <meta name="description" content="Browse our complete collection of next-generation electric and visionary vehicles. Filter by vehicle type, powertrain, and price.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Floating Cyber Navigation Bar -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-hologram-icon">W</div>
+          <div class="brand-text">
+            <span class="brand-title">WhatNext <span>Vision Motors</span></span>
+            <span class="brand-tagline-mini">Future of Mobility</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="vehicles.html" class="nav-link active">Fleet & Inventory</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="innovation.html" class="nav-link">Innovation</a></li>
+          <li><a href="test-drive.html" class="nav-link">Book Test Drive</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div id="navbarAuthContainer"></div>
+          <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle navigation">☰</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Inventory Header -->
+  <header style="padding-top: 150px; padding-bottom: 40px; text-align: center; border-bottom: 1px solid var(--border-glass);">
+    <div class="container">
+      <div class="section-badge-hud"><span class="badge-pulse-node"></span> Live Fleet Matrix</div>
+      <h1 class="section-title">Visionary Fleet & Prototypes</h1>
+      <p class="section-subtitle" style="margin: 0 auto; max-width: 680px;">
+        Filter through our aerodynamic hypercars, executive sedans, and luxury SUVs engineered with solid-state propulsion.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Showcase & Filter Section -->
+  <main class="section-padding">
+    <div class="container">
+      
+      <!-- Multi-Criteria Search & Filter HUD Container -->
+      <section class="filter-hud-panel">
+        <form id="inventoryFilterForm" class="filter-hud-grid">
+          <!-- Keyword Search -->
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label for="inventorySearchInput" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-cyan); text-transform: uppercase;">Telemetry Search</label>
+            <input type="text" id="inventorySearchInput" class="input-field" placeholder="Search by name, model, specs...">
+          </div>
+
+          <!-- Vehicle Type Filter -->
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label for="filterVehicleType" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Category</label>
+            <select id="filterVehicleType" class="select-field">
+              <option value="all">All Vehicle Types</option>
+              <option value="Hypercar">Hypercar</option>
+              <option value="SUV">Luxury SUV</option>
+              <option value="Sedan">Cyber Sedan</option>
+              <option value="Coupe">Coupe</option>
+              <option value="Crossover">Crossover</option>
+              <option value="Concept">Concept</option>
+            </select>
+          </div>
+
+          <!-- Fuel / Powertrain Filter -->
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label for="filterFuelType" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Powertrain</label>
+            <select id="filterFuelType" class="select-field">
+              <option value="all">All Powertrains</option>
+              <option value="EV">100% Electric (EV)</option>
+              <option value="Hybrid">Performance Hybrid</option>
+              <option value="Hydrogen">Hydrogen Fuel Cell</option>
+            </select>
+          </div>
+
+          <!-- Sorting -->
+          <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+            <label for="filterSort" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Telemetry Sort</label>
+            <select id="filterSort" class="select-field">
+              <option value="newest">Newest Releases</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+              <option value="name_asc">Alphabetical (A-Z)</option>
+            </select>
+          </div>
+
+          <!-- Reset Filter Button -->
+          <div style="display: flex; flex-direction: column; justify-content: flex-end;">
+            <button type="button" id="resetFiltersBtn" class="btn btn-outline" style="width: 100%;">
+              Reset Filters
+            </button>
+          </div>
+        </form>
+
+        <!-- Price Range Slider Row -->
+        <div style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 1rem; flex-grow: 1; max-width: 450px;">
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; white-space: nowrap;">Max Price:</span>
+            <input type="range" id="filterPriceSlider" min="40000" max="350000" step="10000" value="350000" style="flex-grow: 1; accent-color: var(--neon-cyan);">
+            <span id="priceDisplay" style="font-family: var(--font-head); font-weight: 800; color: var(--neon-cyan); min-width: 90px;">Any Price</span>
+          </div>
+
+          <div id="resultsCount" style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+            Scanning inventory database...
+          </div>
+        </div>
+      </section>
+
+      <!-- Vehicle Catalog Grid -->
+      <div class="vehicles-grid" id="inventoryGrid">
+        <!-- Rendered dynamically by vehicles.js -->
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 0;">
+          <div class="spinner"></div>
+          <p style="color: var(--text-muted); margin-top: 1rem;">Loading WhatNext vehicle portfolio from database...</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 WhatNext Vision Motors Inc. All Rights Reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="index.html" style="color: var(--text-dim);">Home</a>
+          <a href="about.html" style="color: var(--text-dim);">About Us</a>
+          <a href="test-drive.html" style="color: var(--text-dim);">Test Drive</a>
+          <a href="contact.html" style="color: var(--text-dim);">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/vehicles.js"></script>
+</body>
+</html>
